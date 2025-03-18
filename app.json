@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "state",
-    "slug": "state",
+    "name": "surprised-red-milkshake",
+    "slug": "snack-0780a003-1203-41e8-94cf-717d08a48bac",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -19,8 +19,7 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      },
-      "package": "com.anonymous.state"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

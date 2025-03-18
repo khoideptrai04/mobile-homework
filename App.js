@@ -1,11 +1,12 @@
-import React from "react";
-import { AppProvider } from "./AppContext";
-import AppNavigator from "./Navigation";
+// App.js
+import React from 'react';
+import { AuthProvider } from './hooks/AuthContext';
+import RootRouter from './routers/RootRouter';
 
 export default function App() {
   return (
-    <AppProvider>
-      <AppNavigator />
-    </AppProvider>
+    <AuthProvider>
+      <RootRouter />
+    </AuthProvider>
   );
 }
