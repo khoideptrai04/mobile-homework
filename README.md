@@ -1,5 +1,5 @@
-Họ và Tên : Phùng Tiến Đạt
-Mã sv : 22810310228
+Họ và Tên : Lê Nguyên Khôi
+Mã sv : 22810310244
 
 Output:
 
