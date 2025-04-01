@@ -1,22 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import RootRouter from './routers/RootRouter';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import SelectLocation from './src/screens/SelectLocation';
+import Login from './src/screens/Login';
+import SignUp from './src/screens/SignUp';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const checkLoginStatus = async () => {
-      const token = await AsyncStorage.getItem('userToken');
-      setIsLoggedIn(!!token);
-    };
-    checkLoginStatus();
-  }, []);
-
   return (
     <NavigationContainer>
-      <RootRouter isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      <Stack.Navigator
+        initialRouteName="SelectLocation"
+        screenOptions={{
+          headerShown: false,
+        }}>
+        <Stack.Screen name="SelectLocation" component={SelectLocation} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="SignUp" component={SignUp} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
