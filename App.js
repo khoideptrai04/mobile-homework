@@ -1,48 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import RootRouter from './routers/RootRouter';
 
-// Import các màn hình
-import SplashScreen from './screens/SplashScreen';
-import OnboardingScreen from './screens/OnboardingScreen';
-import SignInScreen from './screens/SignInScreen';
-import NumberScreen from './screens/NumberScreen';
-import VerificationScreen from './screens/VerificationScreen';
+export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-const Stack = createStackNavigator();
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      const token = await AsyncStorage.getItem('userToken');
+      setIsLoggedIn(!!token);
+    };
+    checkLoginStatus();
+  }, []);
 
-const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Splash">
-        <Stack.Screen
-          name="Splash"
-          component={SplashScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Onboarding"
-          component={OnboardingScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="SignIn"
-          component={SignInScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Number"
-          component={NumberScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Verification"
-          component={VerificationScreen}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
+      <RootRouter isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
     </NavigationContainer>
   );
-};
-
-export default App;
+}
